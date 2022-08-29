@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $(".datepicker").each(function () {
     var pickr = $(this).pickadate({
-      format: "dd/mm/yyyy",
+      format: "yyyy-mm-dd",
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15, // Creates a dropdown of 15 years to control year
       editable: true,
@@ -10,9 +10,6 @@ $(document).ready(function () {
     $(this).click(function () {
       pickr.pickadate("open");
     });
-  });
-  $(document).ready(function () {
-    $("select").material_select();
   });
 
   $("input.autocomplete").autocomplete({
