@@ -50,6 +50,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="../assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
 
         <!-- Theme Styles -->
@@ -105,7 +106,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                 </thead>
 
                                 <tbody>
-                                    <?php $sql = "SELECT EmpId,FirstName,LastName,Department,Status,RegDate,id from  tblemployees";
+                                    <?php $sql = "SELECT EmpId,Prefix,FirstName,LastName,Department,Status,RegDate,id from  tblemployees";
                                     $query = $dbh->prepare($sql);
                                     $query->execute();
                                     $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -115,7 +116,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             <tr>
                                                 <td> <?php echo htmlentities($cnt); ?></td>
                                                 <td><?php echo htmlentities($result->EmpId); ?></td>
-                                                <td><?php echo htmlentities($result->FirstName); ?>&nbsp;<?php echo htmlentities($result->LastName); ?></td>
+                                                <td><?php echo htmlentities($result->Prefix); ?><?php echo htmlentities($result->FirstName); ?>&nbsp;<?php echo htmlentities($result->LastName); ?></td>
                                                 <td><?php echo htmlentities($result->Department); ?></td>
                                                 <td><?php $stats = $result->Status;
                                                     if ($stats) {

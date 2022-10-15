@@ -34,6 +34,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="../assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
 
         <!-- Theme Styles -->
@@ -79,8 +80,8 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     <tr>
                                         <th>เลขที่</th>
                                         <th>ชื่อแผนก</th>
+                                        <th>ชื่อภาษาอังกฤษ</th>
                                         <th>ชื่อย่อแผนก</th>
-                                        <th>รหัสแผนก</th>
                                         <th>วันที่สร้าง</th>
                                         <th>การกระทำ</th>
                                     </tr>

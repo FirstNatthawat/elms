@@ -8,28 +8,22 @@ if (strlen($_SESSION['emplogin']) == 0) {
     $eid = $_SESSION['emplogin'];
     if (isset($_POST['update'])) {
 
+        $prefix = $_POST['prefix'];
         $fname = $_POST['firstName'];
         $lname = $_POST['lastName'];
         $gender = $_POST['gender'];
         $dob = $_POST['dob'];
         $department = $_POST['department'];
         $address = $_POST['address'];
-        $city = $_POST['city'];
-        $country = $_POST['country'];
+        $provinces = $_POST['Ref_prov_id'];
+        $districts = $_POST['Ref_subdist_id'];
+        $amphures = $_POST['Ref_dist_id'];
+        $zip_code = $_POST['zip_code'];
         $mobileno = $_POST['mobileno'];
-        $sql = "update tblemployees set FirstName=:fname,LastName=:lname,Gender=:gender,Dob=:dob,Department=:department,Address=:address,City=:city,Country=:country,Phonenumber=:mobileno where EmailId=:eid";
+
+        $sql = "update tblemployees set Prefix='" . $prefix . "',FirstName='" . $fname . "',LastName='" . $lname . "',Gender='" . $gender . "',Dob='" . $dob . "',Department='" . $department . "',Address='" . $address . "',provinces='" . $provinces . "',districts='" . $districts . "',amphures='" . $amphures . "',zip_code='" . $zip_code . "',Phonenumber='" . $mobileno  . "' where EmailId='" . $eid . "';";
         $query = $dbh->prepare($sql);
-        $query->bindParam(':fname', $fname, PDO::PARAM_STR);
-        $query->bindParam(':lname', $lname, PDO::PARAM_STR);
-        $query->bindParam(':gender', $gender, PDO::PARAM_STR);
-        $query->bindParam(':dob', $dob, PDO::PARAM_STR);
-        $query->bindParam(':department', $department, PDO::PARAM_STR);
-        $query->bindParam(':address', $address, PDO::PARAM_STR);
-        $query->bindParam(':city', $city, PDO::PARAM_STR);
-        $query->bindParam(':country', $country, PDO::PARAM_STR);
-        $query->bindParam(':mobileno', $mobileno, PDO::PARAM_STR);
-        $query->bindParam(':eid', $eid, PDO::PARAM_STR);
-        $query->execute();
+         $query->execute();
         $msg = "อัปเดตข้อมูลพนักงานเรียบร้อยแล้ว";
     }
 
@@ -55,6 +49,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
         <link href="assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
         <style>
             .errorWrap {
                 padding: 10px;
@@ -118,7 +113,12 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                                     <span id="empid-availability" style="font-size:12px;"></span>
                                                                 </div>
 
-
+                                                                <div class="input-field col  s12">
+                                                        <label for="prefix">คำนำหน้าชื่อ</label>
+                                                        <input id="prefix" name="prefix"
+                                                            value="<?php echo htmlentities($result->Prefix); ?>"
+                                                            type="text" required>
+                                                    </div>
                                                                 <div class="input-field col m6 s12">
                                                                     <label for="firstName">ชื่อ</label>
                                                                     <input id="firstName" name="firstName" value="<?php echo htmlentities($result->FirstName); ?>" type="text" required>
@@ -134,31 +134,29 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                                     <input name="email" type="email" id="email" value="<?php echo htmlentities($result->EmailId); ?>" readonly autocomplete="off" required>
                                                                     <span id="emailid-availability" style="font-size:12px;"></span>
                                                                 </div>
-
-                                                                <div class="input-field col s12">
-                                                                    <label for="phone">เบอร์โทรศัพท์</label>
-                                                                    <input id="phone" name="mobileno" type="tel" value="<?php echo htmlentities($result->Phonenumber); ?>" maxlength="10" autocomplete="off" required>
-                                                                </div>
+                                                                <div class="input-field col m6 s12">
+                                                        <label class="active" for="gender">เพศ</label>
+                                                        <select name="gender" id="gender" autocomplete="off" required=""
+                                                            aria-required="true">
+                                                            <option
+                                                                value="<?php echo htmlentities($result->Gender); ?>">
+                                                                <?php echo htmlentities($result->Gender); ?></option>
+                                                            <option value="ชาย">ชาย</option>
+                                                            <option value="หญิง">หญิง</option>
+                                                            <option value="อื่นๆ">อื่นๆ</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-field col m6 s12">
+                                                        <input id="birthdate" name="dob" class="datepicker"
+                                                            value="<?php echo htmlentities($result->Dob); ?>">
+                                                    </div>
+                                                            
 
                                                     </div>
                                                 </div>
 
                                                 <div class="col m6">
                                                     <div class="row">
-                                                        <div class="input-field col m6 s12">
-                                                            <select name="gender" autocomplete="off">
-                                                                <option value="<?php echo htmlentities($result->Gender); ?>"><?php echo htmlentities($result->Gender); ?></option>
-                                                                <option value="Male">ชาย</option>
-                                                                <option value="Female">หญิง</option>
-                                                                <option value="Other">อื่นๆ</option>
-                                                            </select>
-                                                        </div>
-                                                        <label for="birthdate">วันเกิด</label>
-                                                        <div class="input-field col m6 s12">
-
-                                                            <input id="birthdate" name="dob" class="datepicker" value="<?php echo htmlentities($result->Dob); ?>">
-                                                        </div>
-
 
 
                                                         <div class="input-field col m6 s12">
@@ -177,20 +175,80 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                             </select>
                                                         </div>
 
-                                                        <div class="input-field col m6 s12">
-                                                            <label for="address">ที่อยู่</label>
-                                                            <input id="address" name="address" type="text" value="<?php echo htmlentities($result->Address); ?>" autocomplete="off" required>
-                                                        </div>
+                                                        <div class="input-field col  s12">
+                                                        <label for="address">ที่อยู่</label>
+                                                        <input id="address" name="address" type="text"
+                                                            value="<?php echo htmlentities($result->Address); ?>"
+                                                            autocomplete="off" required>
+                                                    </div>
+                                                    <div class="input-field col  s12">
+                                                        <select id="provinces" name="Ref_prov_id" autocomplete="off"
+                                                            required="" aria-required="true">
 
-                                                        <div class="input-field col m6 s12">
-                                                            <label for="city">เมือง</label>
-                                                            <input id="city" name="city" type="text" value="<?php echo htmlentities($result->City); ?>" autocomplete="off" required>
-                                                        </div>
+                                                            <?php
+                                                                $sql_provinces = "SELECT * FROM provinces";
+                                                                $query = $dbh->prepare($sql_provinces);
+                                                                $query->execute();
 
-                                                        <div class="input-field col m6 s12">
-                                                            <label for="country">ประเทศ</label>
-                                                            <input id="country" name="country" type="text" value="<?php echo htmlentities($result->Country); ?>" autocomplete="off" required>
-                                                        </div>
+                                                                foreach ($query as $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"
+                                                                <?php echo ($result->provinces == $value['id']) ? "selected" : " " ?>>
+                                                                <?= $value['name_th'] ?>
+                                                            </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input-field col  s12">
+                                                        <select id="amphures" name="Ref_dist_id" autocomplete="off"
+                                                            required="" aria-required="true">
+                                                            <?php
+                                                                $amphures = "SELECT * FROM amphures";
+                                                                $query = $dbh->prepare($amphures);
+                                                                $query->execute();
+
+                                                                foreach ($query as $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"
+                                                                <?php echo ($result->amphures == $value['id']) ? "selected" : " " ?>>
+                                                                <?= $value['name_th'] ?>
+                                                            </option>
+                                                            <?php } ?>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input-field col  s12">
+                                                        <select id="districts" name="Ref_subdist_id" autocomplete=" off"
+                                                            required="" aria-required="true">
+
+                                                            <?php
+                                                                $districts = "SELECT * FROM districts";
+                                                                $query = $dbh->prepare($districts);
+                                                                $query->execute();
+
+                                                                foreach ($query as $value) { ?>
+                                                            <option value="<?= $value['id'] ?>"
+                                                                <?php echo ($result->districts == $value['id']) ? "selected" : " " ?>>
+                                                                <?= $value['name_th'] ?>
+                                                            </option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input-field col m6 s12">
+                                                        <label id="label_zip_code" for="zip_code">รหัสไปรณีย์</label>
+                                                        <input id="zip_code" name="zip_code" type="text"
+                                                            value="<?php echo htmlentities($result->zip_code); ?>"
+                                                            autocomplete="off" required>
+                                                    </div>
+
+                                                    <div class="input-field col m6 s12">
+                                                        <label for="phone">เบอร์โทรศัพท์</label>
+                                                        <input id="phone" name="mobileno" type="tel"
+                                                            value="<?php echo htmlentities($result->Phonenumber); ?>"
+                                                            maxlength="10" autocomplete="off" required>
+                                                    </div>
+                                     
 
 
 
@@ -227,6 +285,68 @@ if (strlen($_SESSION['emplogin']) == 0) {
         <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
         <script src="assets/js/alpha.min.js"></script>
         <script src="assets/js/pages/form_elements.js"></script>
+        <script type="text/javascript">
+    $('#provinces').change(function() {
+        var id_province = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "admin/ajax_db.php",
+            data: {
+                id: id_province,
+                function: 'provinces'
+            },
+            success: function(data) {
+
+                console.log(data);
+                $('#amphures').html(data);
+                $("select").material_select('update');
+
+                $('#districts').html(' ');
+                $('#districts').val(' ');
+                $('#zip_code').val(' ');
+            }
+        });
+    });
+
+    $('#amphures').change(function() {
+        var id_amphures = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "admin/ajax_db.php",
+            data: {
+                id: id_amphures,
+                function: 'amphures'
+            },
+            success: function(data) {
+                $('#districts').html(data);
+                $("select").material_select('update');
+
+            }
+        });
+    });
+
+    $('#districts').change(function() {
+        var id_districts = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "admin/ajax_db.php",
+            data: {
+                id: id_districts,
+                function: 'districts'
+            },
+            success: function(data) {
+                $('#zip_code').val(data)
+                $('#label_zip_code').addClass('active');
+                $("select").material_select('update');
+
+            }
+        });
+
+    });
+    </script>
 
     </body>
 

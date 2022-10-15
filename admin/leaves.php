@@ -28,6 +28,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="../assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
         <link href="../assets/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" />
         <!-- Theme Styles -->
@@ -112,7 +113,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                 </td>
 
-                                                <td>
+                                               
                                                 <td><a href="leave-details.php?leaveid=<?php echo htmlentities($result->lid); ?>" class="waves-effect waves-light btn blue m-b-xs">ดูรายละเอียด</a></td>
                                             </tr>
                                     <?php $cnt++;

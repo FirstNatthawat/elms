@@ -11,15 +11,15 @@
                         $results2 = $query2->fetch(PDO::FETCH_ASSOC);
                         if
                         (!is_null($results2['path'])){
-                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/images/" . $results2['path'];                       
+                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/elms/images/" . $results2['path'];                       
                         }
                         else{
-                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/images/default.png" ;                       
+                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/elms/images/default.png" ;                       
                         }
 ?>
                      <a
                          href="form-images.php?eid=<?= $_SESSION['eid'] ?>&redirecturl=<?=(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>"><img
-                             src="<?= $image_src  ?>" class="circle" alt=""></a>
+                             src="<?= $image_src  ?>" alt=""></a>
                  </div>
                  <div class="sidebar-profile-info">
                      <?php
@@ -35,7 +35,7 @@
                      <p><?php echo htmlentities($result->Prefix . " " . $result->FirstName . " " . $result->LastName); ?>
                      </p>
                      <span>รหัสพนักงาน : </span><span><?php echo htmlentities($result->EmpId) ?></span> <br>
-                     <span><?php echo htmlentities($result->Type_Employee) ?></span>
+                     <span>ประเภทพนักงาน :<?php echo htmlentities($result->Type_Employee) ?></span>
                      <?php }
                         } ?>
                  </div>

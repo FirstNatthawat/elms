@@ -45,6 +45,8 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="../assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
         <style>
             .errorWrap {
                 padding: 10px;
@@ -91,11 +93,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                         <div class="input-field col s12">
                                             <input id="departmentshortname" type="text" class="validate" autocomplete="off" name="departmentshortname" required>
-                                            <label for="deptshortname">ชื่อย่อแผนก</label>
+                                            <label for="deptshortname">ชื่อภาษาอังกฤษ</label>
                                         </div>
                                         <div class="input-field col s12">
                                             <input id="deptcode" type="text" name="deptcode" class="validate" autocomplete="off" required>
-                                            <label for="password">รหัสแผนก</label>
+                                            <label for="password">ชื่อย่อแผนก</label>
                                         </div>
 
 

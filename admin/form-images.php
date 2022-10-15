@@ -1,3 +1,6 @@
+<head>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
 <form method="post" enctype="multipart/form-data">
     <input name="file" type="file" onchange="preview()">
     <img name="image" id="image" src="" width="150px">

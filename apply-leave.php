@@ -25,42 +25,29 @@ if (strlen($_SESSION['emplogin']) == 0) {
         $basename = basename($imageName);
         $originalPath = $uploadTo . $basename;
         $imageType = pathinfo($originalPath, PATHINFO_EXTENSION);
+        $sql = "INSERT INTO tblleaves(LeaveType,ToDate,FromDate,Description,leave_picture,Status,IsRead,empid) VALUES(:leavetype,:fromdate,:todate,:description,:leave_picture,:status,:isread,:empid)";
+        $query = $dbh->prepare($sql);
+        $query->bindParam(':leavetype', $leavetype, PDO::PARAM_STR);
+        $query->bindParam(':fromdate', $fromdate, PDO::PARAM_STR);
+        $query->bindParam(':todate', $todate, PDO::PARAM_STR);
+        $query->bindParam(':description', $description, PDO::PARAM_STR);
+        $query->bindParam(':leave_picture', $imageName, PDO::PARAM_STR);
+        $query->bindParam(':status', $status, PDO::PARAM_STR);
+        $query->bindParam(':isread', $isread, PDO::PARAM_STR);
+        $query->bindParam(':empid', $empid, PDO::PARAM_STR);
+        $query->execute();
+        $lastInsertId = $dbh->lastInsertId();
+        if ($lastInsertId) {
+            $msg = "ลาเรียบร้อยแล้ว";
+        } else {
+            $error = "บางอย่างผิดพลาด กรุณาลองอีกครั้ง";
+        }
 
-        if (!empty($imageName)) {
-
-            if (in_array($imageType, $allowedImageType)) {
                 // Upload file to server 
                 if (move_uploaded_file($tempPath, $originalPath)) {
-                    $msg = $imageName . " อัปโหลดเรียบร้อยแล้ว";
                     // write here sql query to store image name in database
-                    $sql = "INSERT INTO tblleaves(LeaveType,ToDate,FromDate,Description,leave_picture,Status,IsRead,empid) VALUES(:leavetype,:fromdate,:todate,:description,:leave_picture,:status,:isread,:empid)";
-                    $query = $dbh->prepare($sql);
-                    $query->bindParam(':leavetype', $leavetype, PDO::PARAM_STR);
-                    $query->bindParam(':fromdate', $fromdate, PDO::PARAM_STR);
-                    $query->bindParam(':todate', $todate, PDO::PARAM_STR);
-                    $query->bindParam(':description', $description, PDO::PARAM_STR);
-                    $query->bindParam(':leave_picture', $imageName, PDO::PARAM_STR);
-                    $query->bindParam(':status', $status, PDO::PARAM_STR);
-                    $query->bindParam(':isread', $isread, PDO::PARAM_STR);
-                    $query->bindParam(':empid', $empid, PDO::PARAM_STR);
-                    $query->execute();
-                    $lastInsertId = $dbh->lastInsertId();
-                    if ($lastInsertId) {
-                        $msg = "ลาเรียบร้อยแล้ว";
-                    } else {
-                        $error = "บางอย่างผิดพลาด กรุณาลองอีกครั้ง";
-                    }
-                } else {
-                    $error = "ไม่สามารถอัปโหลดได้ โปรดลองอีกครั้ง";
-                }
-            } else {
-                $error = $imageType . " ไม่อนุญาตประเภทไฟล์นี้";
+                } 
             }
-        } else {
-            $error = "โปรดเลือกรูปภาพ";
-        }
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -83,6 +70,8 @@ if (strlen($_SESSION['emplogin']) == 0) {
     <link href="assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
     <link href="assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
     <style>
     .errorWrap {
         padding: 10px;

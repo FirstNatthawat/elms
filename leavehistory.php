@@ -26,6 +26,8 @@ if (strlen($_SESSION['emplogin']) == 0) {
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 
 
         <!-- Theme Styles -->
@@ -100,10 +102,10 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                 <td><?php echo htmlentities($result->Description); ?></td>
                                                 <td><?php echo date('d/m/Y H:i:s',strtotime("+543 years",strtotime(($result->PostingDate)))); ?></td>
                                                 <td><?php if ($result->AdminRemark == "") {
-                                                        echo htmlentities('waiting for approval');
+                                                        echo htmlentities('รอการอนุมัติ');
                                                     } else {
 
-                                                        echo htmlentities(($result->AdminRemark) . " " . "at" . " " . $result->AdminRemarkDate);
+                                                        echo htmlentities(($result->AdminRemark));
                                                     }
 
                                                     ?></td>

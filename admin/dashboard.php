@@ -26,6 +26,8 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="../assets/plugins/metrojs/MetroJs.min.css" rel="stylesheet">
         <link href="../assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
 
 
         <!-- Theme Styles -->
@@ -92,9 +94,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                 <span class="stats-counter"><span class="counter"><?php echo htmlentities($leavtypcount); ?></span></span>
 
                             </div>
-                            <div class="progress stats-card-progress">
-                                <div class="determinate" style="width: 70%"></div>
-                            </div>
+                            <div id="sparkline-line"></div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                     </td>
 
-                                                    <td>
+                                                    
                                                     <td><a href="leave-details.php?leaveid=<?php echo htmlentities($result->lid); ?>" class="waves-effect waves-light btn blue m-b-xs">ดูรายละเอียด</a></td>
                                                 </tr>
                                         <?php $cnt++;

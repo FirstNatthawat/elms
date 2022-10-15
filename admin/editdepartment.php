@@ -42,6 +42,8 @@ if (strlen($_SESSION['alogin']) == 0) {
         <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
         <link href="../assets/css/alpha.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/custom.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="../favicon.ico">
+
         <style>
             .errorWrap {
                 padding: 10px;

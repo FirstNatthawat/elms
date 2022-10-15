@@ -56,6 +56,7 @@ if (strlen($_SESSION['alogin']) == 0) {
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
     <link href="../assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
 
     <link href="../assets/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css" />
     <!-- Theme Styles -->
@@ -103,7 +104,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                             <tbody>
                                 <?php
                                     $lid = intval($_GET['leaveid']);
-                                    $sql = "SELECT * from tblleaves left join tblemployees on tblleaves.empid=tblemployees.id where tblleaves.id=:lid";
+                                    $sql = "SELECT *,tblleaves.Status from tblleaves left join tblemployees on tblleaves.empid=tblemployees.id where tblleaves.id=:lid";
                                     $query = $dbh->prepare($sql);
                                     $query->bindParam(':lid', $lid, PDO::PARAM_STR);
                                     $query->execute();
@@ -148,22 +149,29 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                 <tr>
                                     <td style="font-size:16px;"><b>รายละเอียดการลา :</td>
-                                    <td><?php echo htmlentities($result['Description']); ?></td>
+                                    <td ><?php echo htmlentities($result['Description']); ?></td>
 
 
                                 </tr>
 
                                 <tr>
+                                    <?php if
+                        (!is_null($result['leave_picture'])){
+                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/elms/images/" . $result['leave_picture'];                       
+                        }
+                        else{
+                            $image_src = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/elms/images/download.png" ;                       
+                        }?>
                                     <td style="font-size:16px;"><b>รูปภาพเพิ่มเติม : </b></td>
-                                    <td colspan=""><img width=150px
-                                            src="<?= (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/images/" . $result['leave_picture'];  ?>">
+                                    <td colspan=""><img width=450px
+                                            src="<?=    $image_src ?>">
                                     </td>
 
                                 </tr>
 
                                 <tr>
                                     <td style="font-size:16px;"><b>สถานะการลา :</b></td>
-                                    <td colspan="5"><?php $stats = $result->Status;
+                                    <td colspan="5"><?php  $stats = $result['Status'];
                                                         if ($stats == 1) {
                                                         ?>
                                         <span style="color: green">อนุมัติ</span>
@@ -180,10 +188,10 @@ if (strlen($_SESSION['alogin']) == 0) {
                                 <tr>
                                     <td style="font-size:16px;"><b>หมายเหตุ: </b></td>
                                     <td colspan="5"><?php
-                                                        if ($result->AdminRemark == "") {
+                                                        if ($result['AdminRemark'] == "") {
                                                             echo "รอการอนุมัติ";
                                                         } else {
-                                                            echo htmlentities($result->AdminRemark);
+                                                            echo htmlentities($result['AdminRemark']);
                                                         }
                                                         ?></td>
                                 </tr>
@@ -191,10 +199,10 @@ if (strlen($_SESSION['alogin']) == 0) {
                                 <tr>
                                     <td style="font-size:16px;"><b>วันที่ดำเนินการของผู้ดูแลระบบ : </b></td>
                                     <td colspan="5"><?php
-                                                        if ($result->AdminRemarkDate == "") {
+                                                        if ($result['AdminRemarkDate'] == "") {
                                                             echo "ยังไม่ได้ดำเนินการ";
                                                         } else {
-                                                            echo htmlentities($result->AdminRemarkDate);
+                                                            echo htmlentities($result['AdminRemarkDate']);
                                                         }
                                                         ?></td>
                                 </tr>
@@ -217,13 +225,13 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     </select></p>
                                                     <p><textarea id="textarea1" name="description"
                                                             class="materialize-textarea" name="description"
-                                                            placeholder="Description" length="500" maxlength="500"
+                                                            placeholder="รายละเอียด" length="500" maxlength="500"
                                                             required></textarea></p>
                                                 </div>
                                                 <div class="modal-footer" style="width:90%">
                                                     <input type="submit"
                                                         class="waves-effect waves-light btn blue m-b-xs" name="update"
-                                                        value="Submit">
+                                                        value="บันทึก">
                                                 </div>
 
                                             </div>

@@ -34,6 +34,7 @@ if (isset($_POST['change'])) {
     <link type="text/css" rel="stylesheet" href="assets/plugins/materialize/css/materialize.min.css" />
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 
     <!-- Theme Styles -->
