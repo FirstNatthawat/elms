@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 29, 2022 at 04:46 PM
--- Server version: 5.7.33
--- PHP Version: 7.3.31
+-- Host: 127.0.0.1
+-- Generation Time: Oct 15, 2022 at 12:41 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `amphures` (
   `id` int(5) NOT NULL,
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` int(5) NOT NULL DEFAULT '0'
+  `province_id` int(5) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1048,7 +1048,7 @@ CREATE TABLE `districts` (
   `id` varchar(6) COLLATE utf8_bin NOT NULL,
   `zip_code` int(11) NOT NULL,
   `name_th` varchar(150) COLLATE utf8_bin NOT NULL,
-  `amphure_id` int(11) NOT NULL DEFAULT '0'
+  `amphure_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='InnoDB free: 8192 kB';
 
 --
@@ -9928,9 +9928,25 @@ CREATE TABLE `picture` (
 --
 
 INSERT INTO `picture` (`id`, `path`, `eid`) VALUES
-(3, 'Natthawat_Suetrong.jpg', 3),
-(5, '280303247_1044506779825557_1232024953015450120_n.jpg', 3),
-(6, 'FinalAW_2022MARCH-Table-of-Interest-Rate-PROUD.jpg', 4);
+(6, 'FinalAW_2022MARCH-Table-of-Interest-Rate-PROUD.jpg', 4),
+(7, 'DSC_4223.jpg', 4),
+(9, 'DSC_4223.jpg', 3),
+(10, 'Screenshot_20220827_192720.jpg', 3),
+(11, 'Screenshot_20220827_192720.jpg', 15),
+(12, 'Screenshot_20220827_192720.jpg', 17),
+(13, 'ภานุวัฒน์.jpg', 18),
+(14, '2206248.png', 15),
+(15, 'กฤษฎา.jpg', 19),
+(16, 'images.png', 15),
+(17, 'อลงกรณ์.jpg', 20),
+(18, 'images.png', 21),
+(19, 'default.png', 21),
+(20, 'default.png', 15),
+(21, 'สุรเดช.jpg', 22),
+(22, '648265.jpg', 26),
+(23, '648266.jpg', 25),
+(24, '648267.jpg', 24),
+(25, '648268.jpg', 23);
 
 -- --------------------------------------------------------
 
@@ -10038,7 +10054,7 @@ CREATE TABLE `tbldepartments` (
   `DepartmentName` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `DepartmentShortName` varchar(100) CHARACTER SET utf8 NOT NULL,
   `DepartmentCode` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `CreationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `CreationDate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -10046,10 +10062,16 @@ CREATE TABLE `tbldepartments` (
 --
 
 INSERT INTO `tbldepartments` (`id`, `DepartmentName`, `DepartmentShortName`, `DepartmentCode`, `CreationDate`) VALUES
-(1, 'แผนกบุคคล', 'HR', 'HR001', '2017-11-01 07:16:25'),
-(2, 'แผนกไอที', 'IT', 'IT001', '2017-11-01 07:19:37'),
-(3, 'แผนกปฏิบัติการ', 'OP', 'OP1', '2017-12-02 21:28:56'),
-(4, 'แผนกแอดมิน', 'AD', 'AD001', '2022-07-28 09:55:14');
+(1, 'กองบังคับการกองพัน', 'Battalion Headquarters', 'BH', '2017-11-01 07:16:25'),
+(2, 'ตอนธุรการและกำลังพล', 'Administration and Personnel Section', 'AP', '2017-11-01 07:19:37'),
+(3, 'ตอนยุทธการและการฝึก', 'Operations and Training Section', 'OT', '2017-12-02 21:28:56'),
+(4, 'ตอนส่งกำลัง', 'Supply Section', 'SS', '2022-07-28 09:55:14'),
+(5, 'ตอนการเงิน', 'Finance Section', 'FS', '2022-09-01 02:45:41'),
+(6, 'กองร้อยกองบังคับการ', 'Headquarters Company', 'HQC', '2022-09-01 02:46:49'),
+(7, 'กองร้อยปฏิบัติการสื่อสาร กองบัญชาการส่วนหน้า', 'Signal Operations Company, Forward Command Post', 'SOCF', '2022-09-01 02:48:02'),
+(8, 'กองร้อยปฏิบัติการสื่อสาร กองบัญชาการส่วนหลัง', 'Signal Operations Company, Rear Command Post', 'SOCR', '2022-09-01 02:49:45'),
+(9, 'กองร้อยปฏิบัติการวิทยุถ่ายทอด', 'Radio Relay Operations Company', 'RROC', '2022-09-01 02:51:39'),
+(10, 'กองร้อยปฏิบัติการสื่อสารพิเศษ', 'Special Signal Operations Company', 'SSOC', '2022-09-01 02:51:54');
 
 -- --------------------------------------------------------
 
@@ -10076,7 +10098,7 @@ CREATE TABLE `tblemployees` (
   `Phonenumber` char(11) CHARACTER SET utf8 NOT NULL,
   `Status` int(1) NOT NULL,
   `Type_Employee` enum('พนักงานทั่วไป','แอดมิน') CHARACTER SET utf8 NOT NULL,
-  `RegDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `RegDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -10084,11 +10106,18 @@ CREATE TABLE `tblemployees` (
 --
 
 INSERT INTO `tblemployees` (`id`, `EmpId`, `Prefix`, `FirstName`, `LastName`, `EmailId`, `Password`, `Gender`, `Dob`, `Department`, `Address`, `provinces`, `amphures`, `districts`, `zip_code`, `Phonenumber`, `Status`, `Type_Employee`, `RegDate`) VALUES
-(3, 'AD00000001', 'ร.อ.', 'Admin', 'Admin', 'Natthawat.Suetrong@gmail.com', 'a3852ba83d29081a054cebba4ea62db7', 'ชาย', '9 March, 1998', 'แผนกแอดมิน', 'Thai', '2', '54', '110302', '15000', '0955796789', 1, 'แอดมิน', '2022-07-28 09:56:44'),
-(4, 'EMP00000002', 'พ.ท.', 'ทดลองใหม่', 'ทดลองใหม่', 'Natthawat@bangkoksync.com', 'a3852ba83d29081a054cebba4ea62db7', 'ชาย', '9 March, 1998', 'แผนกไอที', 'ไทย', '2', '54', '110302', '15000', '0955796789', 1, 'พนักงานทั่วไป', '2022-07-28 10:02:31'),
-(8, 'AD00000002', 'ทดสอบ', 'Natthawat', 'Suetrong', 'Natthawat@gmail.com', '823914b1f862aec6618599c339f3dd22', 'ชาย', '09/03/1998', 'แผนกแอดมิน', '483/15 Narathiwat 30,Nonsi Road,Chongnonsri,Yannawai,Bangkok,Thailand 10120', '2', '54', '110302', '15000', '0955796789', 1, 'แอดมิน', '2022-07-28 11:40:59'),
-(9, 'EMP00000001', 'ทดสอบ', 'ทดสอบ', 'ทดสอบ', 'test@gmail.com', '098f6bcd4621d373cade4e832627b4f6', 'ชาย', '2022-08-01', 'แผนกบุคคล', '483/15 Narathiwat 30,Nonsi Road,Chongnonsri,Yannawai,Bangkok,Thailand 10120', '2', '54', '110302', '15000', '0955796789', 0, 'พนักงานทั่วไป', '2022-07-28 11:42:08'),
-(14, 'prefix', 'test999', 'test999', 'test999', 'prefix@gmail.com', '851f5ac9941d720844d143ed9cfcf60a', 'หญิง', '2022-08-15', 'แผนกปฏิบัติการ', 'test999', '10', '126', '190402', '18150', '123456558', 1, 'พนักงานทั่วไป', '2022-08-20 15:30:55');
+(15, 'ADMIN', '', 'ADMIN', '', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-09-09', 'ตอนธุรการและกำลังพล', '183', '1', '1', '100101', '10210', '0892428893', 1, 'แอดมิน', '2022-08-30 12:57:23'),
+(17, '1613400504', 'ส.อ.', 'อภิสิทธิ์', 'รัมมะโรจน์', 'apisit.r@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-09-09', 'ตอนยุทธการและการฝึก', '183/794', '1', '36', '103602', '10210', '0892428893', 1, 'พนักงานทั่วไป', '2022-09-01 01:55:38'),
+(18, '1593300060', 'พ.อ.ต.', 'ภานุวัฒน์ ', 'วิศรวีรศักดิ์', 'panuwat.wi@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1987-04-08', 'กองร้อยปฏิบัติการสื่อสารพิเศษ', 'Happy Condo', '1', '103602', '36', '10210', '0969329224', 1, 'พนักงานทั่วไป', '2022-09-01 03:03:24'),
+(19, '1533301483', 'ส.อ.', 'กฤษฎา', 'ศรีนุช', 'kritsada.sri@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '2009-04-02', 'กองร้อยปฏิบัติการวิทยุถ่ายทอด', '183/001', '1', '103602', '36', '10210', '0846401931', 1, 'พนักงานทั่วไป', '2022-09-01 03:13:36'),
+(20, '1613400501', 'จ.อ.', 'อลงกรณ์ ', 'ตุนอก', 'alongkron.tu@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-09-08', 'กองบังคับการกองพัน', '183/002', '1', '1', '100101', '10210', '0812341253', 1, 'พนักงานทั่วไป', '2022-09-02 03:58:32'),
+(22, '1613400502', 'ส.อ.', 'สุรเดช', 'เชียงทับ', 'suradech.c@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-09-29', 'กองร้อยกองบังคับการ', 'T13 คอนโดเมืองทองธานี', '3', '120601', '63', '11120', '0872651362', 1, 'พนักงานทั่วไป', '2022-09-02 04:06:50'),
+(23, '1613400503', 'จ.อ.', 'เจตวัฒน์', 'นุ่นอ่อน', 'jettawat.n@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1997-01-16', 'กองร้อยปฏิบัติการวิทยุถ่ายทอด', '183/002 ', '1', '103602', '36', '10210', '0876212367', 1, 'พนักงานทั่วไป', '2022-09-05 09:20:59'),
+(24, '1613400505', 'จ.อ.', 'เจตนพันธุ์', 'รุจิจิตต์', 'jettanapan.r@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1995-03-15', 'กองร้อยปฏิบัติการสื่อสาร กองบัญชาการส่วนหลัง', 'Happy Condo', '1', '103602', '36', '10210', '0938271829', 1, 'พนักงานทั่วไป', '2022-09-05 09:22:43'),
+(25, '1613400506', 'จ.อ.', 'วรศักดิ์', 'สระทองอินทร์', 'worasak.sr@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-06-08', 'กองร้อยปฏิบัติการวิทยุถ่ายทอด', '183/006', '1', '103602', '36', '10210', '0986787898', 1, 'พนักงานทั่วไป', '2022-09-05 09:24:20'),
+(26, '1613400507', 'ส.อ.', 'สิรดนัย', 'น้ำพลอยเทศ', 'siradanai.n@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-10-15', 'กองร้อยปฏิบัติการวิทยุถ่ายทอด', 'Happy Condo', '1', '103602', '36', '10210', '0876576531', 1, 'พนักงานทั่วไป', '2022-09-05 09:26:10'),
+(27, '1613400508', 'ส.อ.', 'อภิวัฒน์', 'ปัญญาเจริญ', 'apiwat.p@rtarf.mi.th', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-02-11', 'กองร้อยปฏิบัติการสื่อสาร กองบัญชาการส่วนหน้า', '183/008', '1', '103602', '36', '10210', '0985624152', 1, 'พนักงานทั่วไป', '2022-09-05 09:32:08'),
+(28, '001', 'นาย', 'ฉลาม', 'มีตัง', 'cat@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ชาย', '1998-01-08', 'กองบังคับการกองพัน', '199 สรงประภา', '1', '103602', '36', '10210', '0892428888', 1, 'พนักงานทั่วไป', '2022-10-08 02:29:11');
 
 -- --------------------------------------------------------
 
@@ -10102,9 +10131,9 @@ CREATE TABLE `tblleaves` (
   `ToDate` varchar(120) CHARACTER SET utf8 NOT NULL,
   `FromDate` varchar(120) CHARACTER SET utf8 NOT NULL,
   `Description` mediumtext CHARACTER SET utf8 NOT NULL,
-  `leave_picture` text,
-  `PostingDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `AdminRemark` mediumtext CHARACTER SET utf8,
+  `leave_picture` text DEFAULT NULL,
+  `PostingDate` timestamp NOT NULL DEFAULT current_timestamp(),
+  `AdminRemark` mediumtext CHARACTER SET utf8 DEFAULT NULL,
   `AdminRemarkDate` varchar(120) CHARACTER SET utf8 DEFAULT NULL,
   `Status` int(1) NOT NULL,
   `IsRead` int(1) NOT NULL,
@@ -10116,20 +10145,11 @@ CREATE TABLE `tblleaves` (
 --
 
 INSERT INTO `tblleaves` (`id`, `LeaveType`, `ToDate`, `FromDate`, `Description`, `leave_picture`, `PostingDate`, `AdminRemark`, `AdminRemarkDate`, `Status`, `IsRead`, `empid`) VALUES
-(7, 'Casual Leave', '30/11/2017', '29/10/2017', 'test description test descriptiontest descriptiontest descriptiontest descriptiontest descriptiontest descriptiontest description', NULL, '2017-11-19 13:11:21', 'Lorem Ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.\r\n', '2017-12-02 23:26:27 ', 2, 1, 1),
-(8, 'Medical Leave test', '21/10/2017', '25/10/2017', 'test description test descriptiontest descriptiontest descriptiontest descriptiontest descriptiontest descriptiontest description', NULL, '2017-11-20 11:14:14', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2017-12-02 23:24:39 ', 1, 1, 1),
-(9, 'Medical Leave test', '08/12/2017', '12/12/2017', 'Lorem Ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.\r\n', NULL, '2017-12-02 18:26:01', NULL, NULL, 0, 1, 2),
-(10, 'Restricted Holiday(RH)', '25/12/2017', '25/12/2017', 'Lorem Ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', NULL, '2017-12-03 08:29:07', 'Lorem Ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.', '2017-12-03 14:06:12 ', 1, 1, 1),
-(11, 'Casual Leave', '22/02/2022', '22/02/2022', 'sad', NULL, '2020-11-03 05:20:58', NULL, NULL, 0, 1, 1),
-(12, 'Casual Leave', '22/02/2022', '22/02/2022', 'sad', NULL, '2020-11-03 05:52:49', NULL, NULL, 0, 1, 1),
-(13, 'Medical Leave test', '16/07/2022', '16/07/2022', 'mflv[', NULL, '2022-07-16 10:18:21', NULL, NULL, 0, 1, 1),
-(14, 'Medical Leave test', '16/07/2022', '16/07/2022', 'ทดสอบ', NULL, '2022-07-16 10:19:19', NULL, NULL, 0, 1, 1),
-(15, 'Casual Leave', '16/07/2022', '17/07/2022', 'ทดสอบ', NULL, '2022-07-16 10:19:34', NULL, NULL, 0, 1, 1),
-(16, 'Restricted Holiday(RH)', '16 July, 2022', '17 July, 2022', 'test', NULL, '2022-07-16 10:38:28', 'ddf', '2022-07-24 15:03:29 ', 2, 1, 1),
-(17, 'ลาพักร้อน', '09/03/2022', '10/03/2022', 'ลา', NULL, '2022-07-28 13:48:52', NULL, NULL, 0, 1, 8),
-(18, 'การลาป่วย', '09/08/2022', '11/08/2022', 'hh', NULL, '2022-08-05 13:47:56', NULL, NULL, 0, 1, 4),
-(19, 'ลากิจ', '2022-08-11', '2022-08-12', 'dd', NULL, '2022-08-05 13:51:07', NULL, NULL, 0, 1, 4),
-(21, 'วันหยุดนักขัตฤกษ์', '2022-08-30', '2022-08-31', 'ddd', 'FinalAW_2022MARCH-Table-of-Interest-Rate-PROUD.jpg', '2022-08-29 15:52:23', NULL, NULL, 0, 1, 4);
+(23, 'ลาป่วย', '2022-09-05', '2022-09-06', 'ดู Netflix มากเกินไป', 'open_netflix.png', '2022-09-01 03:21:09', 'เหตุผลไม่เพียงพอ ', '2022-09-02 10:43:04 ', 2, 1, 19),
+(29, 'ลากิจส่วนตัว', '2022-09-05', '2022-09-06', 'ไปธุระส่วนตัว', '', '2022-09-02 03:44:58', 'อนุมัติกการลา', '2022-09-02 10:47:12 ', 1, 1, 17),
+(30, 'ลาพักผ่อนประจำปี', '2022-09-05', '2022-09-09', 'สถานที่อยู่ : Happy Condo ถ.สรงประภา แขวง สีกัน เขต ดอนเมือง กรุงเทพ 10210', '', '2022-09-02 03:46:31', 'ยอม', '2022-09-02 20:53:08 ', 1, 1, 18),
+(31, 'ลาพักผ่อนประจำปี', '2022-09-12', '2022-09-16', 'เบื่อหัวหน้า', '', '2022-09-02 13:08:24', 'ไม่', '2022-09-02 20:52:39 ', 2, 1, 19),
+(32, 'ลาพักผ่อนประจำปี', '2022-09-12', '2022-09-16', 'ไปเที่ยวพักผ่อน เขาใหญ่', '', '2022-09-05 04:41:27', 'เดินทางปลอดภัย ', '2022-10-08 9:31:10 ', 1, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -10140,8 +10160,8 @@ INSERT INTO `tblleaves` (`id`, `LeaveType`, `ToDate`, `FromDate`, `Description`,
 CREATE TABLE `tblleavetype` (
   `id` int(11) NOT NULL,
   `LeaveType` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
-  `Description` mediumtext CHARACTER SET utf8,
-  `CreationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `Description` mediumtext CHARACTER SET utf8 DEFAULT NULL,
+  `CreationDate` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -10149,10 +10169,15 @@ CREATE TABLE `tblleavetype` (
 --
 
 INSERT INTO `tblleavetype` (`id`, `LeaveType`, `Description`, `CreationDate`) VALUES
-(1, 'ลาพักร้อน', 'ลาพักร้อน', '2017-11-01 12:07:56'),
-(2, 'การลาป่วย', 'การลาป่วย', '2017-11-06 13:16:09'),
-(3, 'วันหยุดนักขัตฤกษ์', 'วันหยุดนักขัตฤกษ์', '2017-11-06 13:16:38'),
-(4, 'ลากิจ', 'ลากิจ', '2022-07-28 11:47:25');
+(5, 'ลาป่วย', '', '2022-09-01 02:36:36'),
+(6, 'ลาคลอดบุตร', '', '2022-09-01 02:36:45'),
+(7, 'ลากิจส่วนตัว', '', '2022-09-01 02:36:50'),
+(8, 'ลาพักผ่อนประจำปี', '', '2022-09-01 02:36:56'),
+(9, 'ลาอุปสมบทหรือลาประกอบพิธีฮัจย์', '', '2022-09-01 02:37:01'),
+(10, 'ลาเข้ารับการตรวจเลือกเข้ารับการเตรียมพล', '', '2022-09-01 02:37:06'),
+(11, 'ลาไปศึกษา ฝึกอบรม ดูงาน หรือปฏิบัติการวิจัย', '', '2022-09-01 02:37:10'),
+(12, 'ลาไปปฏิบัติงานในองค์การระหว่างประเทศ', '', '2022-09-01 02:37:16'),
+(13, 'ลาติดตามคู่สมรส', '', '2022-09-01 02:37:22');
 
 --
 -- Indexes for dumped tables
@@ -10221,7 +10246,7 @@ ALTER TABLE `amphures`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -10233,25 +10258,25 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `tbldepartments`
 --
 ALTER TABLE `tbldepartments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tblemployees`
 --
 ALTER TABLE `tblemployees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tblleaves`
 --
 ALTER TABLE `tblleaves`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tblleavetype`
 --
 ALTER TABLE `tblleavetype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
