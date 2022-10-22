@@ -17,7 +17,7 @@
                         ?>
                      <a
                          href="admin/form-images.php?eid=<?= $_SESSION['eid'] ?>&redirecturl=<?= (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>"><img
-                             src="<?= $image_src  ?>"  alt=""></a>
+                             src="<?= $image_src  ?>" alt=""></a>
                  </div>
                  <div class="sidebar-profile-info">
                      <?php
@@ -43,6 +43,8 @@
 
                  <li class="no-padding"><a class="waves-effect waves-grey" href="myprofile.php"><i
                              class="material-icons">account_box</i>โปรไฟล์ของฉัน</a></li>
+                 <li class="no-padding"><a class="waves-effect waves-grey" href="editmyprofile.php"><i
+                             class="material-icons">account_box</i>เปลี่ยนโปรไฟล์ของฉัน</a></li>
                  <li class="no-padding"><a class="waves-effect waves-grey" href="emp-changepassword.php"><i
                              class="material-icons">settings_input_svideo</i>เปลี่ยนรหัสผ่าน</a></li>
                  <li class="no-padding">

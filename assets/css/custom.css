@@ -2,3 +2,10 @@
 header.mn-header.navbar-fixed .cyan.darken-1 {
     background: #663399 !important;
 }
+input:read-only {
+    color: rgba(0,0,0,0.3);
+}
+
+form#edit-profile input:read-only {
+    color: unset;
+}

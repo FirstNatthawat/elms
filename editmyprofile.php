@@ -88,7 +88,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
-                        <form id="example-form" method="post" name="updatemp">
+                        <form id="edit-profile" method="post" name="updatemp">
                             <div>
                                 <h3>ดูโปรไฟล์</h3>
                                 <?php if ($error) { ?><div class="errorWrap">
@@ -121,20 +121,20 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
                                                     <div class="input-field col  s12">
                                                         <label for="prefix">คำนำหน้าชื่อ</label>
-                                                        <input id="prefix" name="prefix" readonly
+                                                        <input id="prefix" name="prefix"
                                                             value="<?php echo htmlentities($result->Prefix); ?>"
                                                             type="text" required>
                                                     </div>
                                                     <div class="input-field col m6 s12">
                                                         <label for="firstName">ชื่อ</label>
-                                                        <input id="firstName" name="firstName" readonly
+                                                        <input id="firstName" name="firstName"
                                                             value="<?php echo htmlentities($result->FirstName); ?>"
                                                             type="text" required>
                                                     </div>
 
                                                     <div class="input-field col m6 s12">
                                                         <label for="lastName">นามสกุล</label>
-                                                        <input id="lastName" name="lastName" readonly
+                                                        <input id="lastName" name="lastName"
                                                             value="<?php echo htmlentities($result->LastName); ?>"
                                                             type="text" autocomplete="off" required>
                                                     </div>
@@ -143,13 +143,13 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                         <label for="email">อีเมล์</label>
                                                         <input name="email" type="email" id="email"
                                                             value="<?php echo htmlentities($result->EmailId); ?>"
-                                                            readonly autocomplete="off" required>
+                                                            autocomplete="off" required>
                                                         <span id="emailid-availability" style="font-size:12px;"></span>
                                                     </div>
                                                     <div class="input-field col m6 s12">
                                                         <label class="active" for="gender">เพศ</label>
                                                         <select name="gender" id="gender" autocomplete="off" required=""
-                                                            aria-required="true" disabled=true>
+                                                            aria-required="true">
                                                             <option
                                                                 value="<?php echo htmlentities($result->Gender); ?>">
                                                                 <?php echo htmlentities($result->Gender); ?></option>
@@ -160,7 +160,6 @@ if (strlen($_SESSION['emplogin']) == 0) {
                                                     </div>
                                                     <div class="input-field col m6 s12">
                                                         <input id="birthdate" name="dob" class="datepicker"
-                                                            disabled=true
                                                             value="<?php echo htmlentities($result->Dob); ?>">
                                                     </div>
 
@@ -173,7 +172,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
 
                                                     <div class="input-field col s12">
-                                                        <select name="department" autocomplete="off" disabled=true>
+                                                        <select name="department" autocomplete="off">
                                                             <option
                                                                 value="<?php echo htmlentities($result->Department); ?>">
                                                                 <?php echo htmlentities($result->Department); ?>
@@ -196,13 +195,13 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
                                                     <div class="input-field col  s12">
                                                         <label for="address">ที่อยู่</label>
-                                                        <input id="address" name="address" type="text" readonly
+                                                        <input id="address" name="address" type="text"
                                                             value="<?php echo htmlentities($result->Address); ?>"
                                                             autocomplete="off" required>
                                                     </div>
                                                     <div class="input-field col  s12">
                                                         <select id="provinces" name="Ref_prov_id" autocomplete="off"
-                                                            disabled=true required="" aria-required="true">
+                                                            required="" aria-required="true">
 
                                                             <?php
                                                                 $sql_provinces = "SELECT * FROM provinces";
@@ -220,7 +219,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
                                                     <div class="input-field col  s12">
                                                         <select id="amphures" name="Ref_dist_id" autocomplete="off"
-                                                            disabled=true required="" aria-required="true">
+                                                            required="" aria-required="true">
                                                             <?php
                                                                 $amphures = "SELECT * FROM amphures";
                                                                 $query = $dbh->prepare($amphures);
@@ -238,7 +237,7 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
                                                     <div class="input-field col  s12">
                                                         <select id="districts" name="Ref_subdist_id" autocomplete=" off"
-                                                            disabled=true required="" aria-required="true">
+                                                            required="" aria-required="true">
 
                                                             <?php
                                                                 $districts = "SELECT * FROM districts";
@@ -256,14 +255,14 @@ if (strlen($_SESSION['emplogin']) == 0) {
 
                                                     <div class="input-field col m6 s12">
                                                         <label id="label_zip_code" for="zip_code">รหัสไปรณีย์</label>
-                                                        <input id="zip_code" name="zip_code" type="text" readonly
+                                                        <input id="zip_code" name="zip_code" type="text"
                                                             value="<?php echo htmlentities($result->zip_code); ?>"
                                                             autocomplete="off" required>
                                                     </div>
 
                                                     <div class="input-field col m6 s12">
                                                         <label for="phone">เบอร์โทรศัพท์</label>
-                                                        <input id="phone" name="mobileno" type="tel" readonly
+                                                        <input id="phone" name="mobileno" type="tel"
                                                             value="<?php echo htmlentities($result->Phonenumber); ?>"
                                                             maxlength="10" autocomplete="off" required>
                                                     </div>
